@@ -64,11 +64,11 @@
      <div class="register_style">
       <div class="u_register">
         <ul>
-         <li><label class="name">手机号码：</label><input name="" type="text"  class="text_Add"/></li>
-         <li><label class="name">用户名称：</label><input name="" type="text"  class="text_Add"/></li>
-         <li><label class="name">设置密码：</label><input name="" type="password"  class="text_Add" placeholder="6-20个字符，由字母、数字和符号的两种以上组合"/></li>
-         <li><label class="name">确认密码：</label><input name="" type="password"  class="text_Add"/></li>
-         <li><label class="name">验&nbsp;证&nbsp;&nbsp;码：</label><input name="" type="text"  class="text_verification"/></li>
+         <li><label class="name">手机号码：</label><input name="" type="text" id="tel" class="text_Add"/></li>
+         <li><label class="name">用户名称：</label><input name="" type="text" id="name" class="text_Add"/></li>
+         <li><label class="name">设置密码：</label><input name="" type="password" id="password" class="text_Add" placeholder="6-20个字符，由字母、数字和符号的两种以上组合"/></li>
+         <li><label class="name">确认密码：</label><input name="" type="password" id="surepassword" class="text_Add"/></li>
+         <li><label class="name">验&nbsp;证&nbsp;&nbsp;码：</label><input name="" type="text" id="verification" class="text_verification"/></li>
         </ul>
          <div class="auto-register"><label class="auto-label"><input type="checkbox" id="rememberMe"><span><a href="#">《国际商贸城网站注册协议》</a></span></label></div>
          <div class="register-btn"><a href="javascript:;" class="btn_register">注&nbsp;&nbsp;&nbsp;&nbsp;册</a></div>
@@ -111,5 +111,22 @@
    @2020 贺君凤信管
  </div>
 </div>
+
+<script src="./data.js"></script>
+<script>
+  var userObj={}//定义一个对象，用于存放用户名。密码和ID
+  $(".register-btn").click(function(){
+    userObj.name=$("#name").val();//将输入的用户名存入用户信息对象中
+    if($("#password").val()!=$("#surepassword").val()){//判断密码与确认密码是否一致
+      alert("两次输入的密码不一致，请确认后重新输入！");//不一致则弹出警告框让用户确认密码后重新输入
+      $('#password').val("");
+      $('#surepassword').val("");//将密码和确认密码置空
+    }else{
+      userObj.password=$("#password").val();//将用户输入的密码存入用户信息对象中
+    }
+    userObj.id=userArr.length+1;//将用户ID设为数组长度+1
+    userArr.push(userObj)//将用户信息对象添加到用户信息数组中
+  })
+</script>
 </body>
 </html>
